@@ -31,6 +31,15 @@ public class GameStarter : MonoBehaviour
             if (timer > 0)
             {
                 timer -= 1 * Time.deltaTime;
+
+                if(timer < 0.5f)
+                {
+                    if (SoundManager.instance.isPlaying[1] == false)
+                    {
+                        SoundManager.instance.CreateSound(8);
+                        SoundManager.instance.isPlaying[1] = true;
+                    }
+                }
             }
             else
             {
@@ -54,6 +63,11 @@ public class GameStarter : MonoBehaviour
         }
         else
         {
+            if (SoundManager.instance.isPlaying[0] == false)
+            {
+                StartCoroutine(SoundManager.instance.TutorialSound());
+            }
+
             if (waitTimer > 0)
             {
                 waitTimer -= 1 * Time.deltaTime;

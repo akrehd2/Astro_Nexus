@@ -7,6 +7,10 @@ using UnityEngine.Rendering.Universal;
 
 public class RaycastAstro : MonoBehaviour
 {
+    public static RaycastAstro instance;
+
+    public bool isCanClick;
+
     LineRenderer lineRenderer;
     float lineWidth = 0.01f;
 
@@ -15,6 +19,11 @@ public class RaycastAstro : MonoBehaviour
 
     public List<GameObject> nexumGameobject;
     public List<Vector3> linePoints;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     private void Start()
     {
@@ -40,153 +49,169 @@ public class RaycastAstro : MonoBehaviour
             lineRenderer.positionCount = 0;
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (isCanClick == true)
         {
-            clickParticle.SetActive(true);
-
-            if (Physics.Raycast(ray, out hit))
+            if (StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled == false)
             {
-                clickGameobject = hit.transform.gameObject;
-
-                linePoints.Add(clickGameobject.transform.position);
-            }
-        }
-
-        if (clickGameobject != null)
-        {
-            if (Input.GetMouseButton(0))
-            {
-                lineRenderer.enabled = true;
-
-                if (Physics.Raycast(ray, out hit))
+                if (Input.GetMouseButtonDown(0))
                 {
-                    Debug.Log(hit.transform.name);
+                    clickParticle.SetActive(true);
 
-                    if (hit.transform.gameObject != clickGameobject)
+                    if (Physics.Raycast(ray, out hit))
                     {
-                        if (!nexumGameobject.Contains(clickGameobject))
-                        {
-                            nexumGameobject.Add(clickGameobject);
-                        }
+                        clickGameobject = hit.transform.gameObject;
 
-                        if (!nexumGameobject.Contains(hit.transform.gameObject))
+                        int R = Random.Range(11, 14);
+                        SoundManager.instance.CreateSound(R);
+                        linePoints.Add(clickGameobject.transform.position);
+                    }
+                }
+
+                if (clickGameobject != null)
+                {
+
+                    if (Input.GetMouseButton(0))
+                    {
+                        lineRenderer.enabled = true;
+
+                        if (Physics.Raycast(ray, out hit))
                         {
-                            nexumGameobject.Add(hit.transform.gameObject);
+                            Debug.Log(hit.transform.name);
+
+                            if (hit.transform.gameObject != clickGameobject)
+                            {
+                                if (!nexumGameobject.Contains(clickGameobject))
+                                {
+                                    nexumGameobject.Add(clickGameobject);
+                                }
+
+                                if (!nexumGameobject.Contains(hit.transform.gameObject))
+                                {
+                                    int R = Random.Range(11, 14);
+                                    SoundManager.instance.CreateSound(R);
+                                    nexumGameobject.Add(hit.transform.gameObject);
+                                }
+                                else
+                                {
+                                    linePoints[nexumGameobject.IndexOf(hit.transform.gameObject)] = hit.transform.position;
+
+                                    if (hit.transform.gameObject == nexumGameobject[nexumGameobject.Count - 1])
+                                    {
+                                        if (linePoints.Count > nexumGameobject.Count)
+                                        {
+                                            linePoints[nexumGameobject.Count] = nowMousePosition;
+                                        }
+                                        else
+                                        {
+                                            linePoints.Add(nowMousePosition);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        linePoints[nexumGameobject.Count] = nowMousePosition;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if (hit.transform.gameObject == clickGameobject)
+                                {
+                                    if (linePoints.Count > 1)
+                                    {
+                                        linePoints[linePoints.Count - 1] = nowMousePosition;
+                                    }
+                                    else
+                                    {
+                                        linePoints.Add(nowMousePosition);
+                                    }
+                                }
+                            }
                         }
                         else
                         {
-                            linePoints[nexumGameobject.IndexOf(hit.transform.gameObject)] = hit.transform.position;
-
-                            if (hit.transform.gameObject == nexumGameobject[nexumGameobject.Count - 1])
+                            if (linePoints.Count - nexumGameobject.Count < 2)
                             {
-                                if (linePoints.Count > nexumGameobject.Count)
+                                if (nexumGameobject.Count == 0)
+                                {
+                                    Debug.Log("nohit");
+                                    //linePoints.Add(nowMousePosition);
+                                }
+                                else if (linePoints.Count == nexumGameobject.Count)
+                                {
+                                    Debug.Log("nohit");
+                                    linePoints.Add(nowMousePosition);
+                                }
+                                else
+                                {
+                                    linePoints[nexumGameobject.Count] = nowMousePosition;
+                                }
+                            }
+                            else
+                            {
+                                if (nexumGameobject.Count != 0)
                                 {
                                     linePoints[nexumGameobject.Count] = nowMousePosition;
                                 }
                                 else
                                 {
-                                    linePoints.Add(nowMousePosition);
+                                    linePoints[1] = nowMousePosition;
                                 }
                             }
-                            else
-                            {
-                                linePoints[nexumGameobject.Count] = nowMousePosition;
-                            }
                         }
+
+                        lineRenderer.SetPositions(linePoints.ToArray());
                     }
-                    else
+
+
+                    if (Input.GetMouseButtonUp(0))
                     {
-                        if (hit.transform.gameObject == clickGameobject)
+                        if (nexumGameobject == null)
                         {
-                            if (linePoints.Count > 1)
-                            {
-                                linePoints[linePoints.Count - 1] = nowMousePosition;
-                            }
-                            else
-                            {
-                                linePoints.Add(nowMousePosition);
-                            }
+                            clickGameobject = null;
+                            nexumGameobject.Clear();
+                            linePoints.Clear();
+
+                            return;
                         }
-                    }
-                }
-                else
-                {
-                    if (linePoints.Count - nexumGameobject.Count < 2)
-                    {
-                        if (nexumGameobject.Count == 0)
+
+                        if (string.Join(", ", StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList) == string.Join(", ", nexumGameobject))
                         {
-                            Debug.Log("nohit");
-                            //linePoints.Add(nowMousePosition);
-                        }
-                        else if (linePoints.Count == nexumGameobject.Count)
-                        {
-                            Debug.Log("nohit");
-                            linePoints.Add(nowMousePosition);
+                            clickGameobject = null;
+                            nexumGameobject.Clear();
+                            linePoints.Clear();
+
+                            StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
+
+                            SoundManager.instance.CreateSound(7);
+
+                            StageManager.instance.isStageClear[StageManager.instance.Stage] = true;
+                            StageManager.instance.Stage += 1;
                         }
                         else
                         {
-                            linePoints[nexumGameobject.Count] = nowMousePosition;
+                            if (nexumGameobject.Count > 0)
+                            {
+                                Vignette vignette;
+                                PostCtrl.instance.postVolume.profile.TryGet<Vignette>(out vignette);
+                                vignette.intensity.value = 0.6f;
+
+                                StageManager.instance.showStageAim[StageManager.instance.Stage] = false;
+
+                                SoundManager.instance.CreateSound(9);
+
+                                CameraCtrl.instance.animator.SetTrigger("Re");
+                                CameraCtrl.instance.idleTimer = 0.7f;
+                                CameraCtrl.instance.countIdle = 4;
+                            }
+
+                            clickGameobject = null;
+                            nexumGameobject.Clear();
+                            linePoints.Clear();
                         }
-                    }
-                    else
-                    {
-                        if (nexumGameobject.Count != 0)
-                        {
-                            linePoints[nexumGameobject.Count] = nowMousePosition;
-                        }
-                        else
-                        {
-                            linePoints[1] = nowMousePosition;
-                        }
+
+                        lineRenderer.positionCount = 0;
                     }
                 }
-
-                lineRenderer.SetPositions(linePoints.ToArray());
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                if (nexumGameobject == null)
-                {
-                    clickGameobject = null;
-                    nexumGameobject.Clear();
-                    linePoints.Clear();
-
-                    return;
-                }
-
-                if (string.Join(", ", StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList) == string.Join(", ", nexumGameobject))
-                {
-                    clickGameobject = null;
-                    nexumGameobject.Clear();
-                    linePoints.Clear();
-
-                    StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
-
-                    StageManager.instance.isStageClear[StageManager.instance.Stage] = true;
-                    StageManager.instance.Stage += 1;
-                }
-                else
-                {
-                    if (nexumGameobject.Count > 0)
-                    {
-                        Vignette vignette;
-                        PostCtrl.instance.postVolume.profile.TryGet<Vignette>(out vignette);
-                        vignette.intensity.value = 0.6f;
-
-                        StageManager.instance.showStageAim[StageManager.instance.Stage] = false;
-
-                        CameraCtrl.instance.animator.SetTrigger("Re");
-                        CameraCtrl.instance.idleTimer = 1;
-                        CameraCtrl.instance.countIdle = 4;
-                    }
-
-                    clickGameobject = null;
-                    nexumGameobject.Clear();
-                    linePoints.Clear();
-                }
-
-                lineRenderer.positionCount = 0;
             }
         }
 

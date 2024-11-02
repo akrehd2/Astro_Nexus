@@ -13,7 +13,7 @@ public class AstroCtrl : MonoBehaviour
 
         foreach (var particle in particles)
         {
-            int bR = Random.Range(0, 1);
+            int bR = Random.Range(0, 2);
 
             if (bR == 0)
             {

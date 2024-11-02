@@ -46,15 +46,21 @@ public class CameraCtrl : MonoBehaviour
 
                     if (countIdle > 0)
                     {
+                        SoundManager.instance.CreateSound(10);
                         animator.SetTrigger("Idle");
                         countIdle--;
                         idleTimer = 1;
                     }
                     else if (countIdle == 0)
                     {
+                        SoundManager.instance.CreateSound(6);
                         animator.SetTrigger("Re");
                         countIdle--;
-                        idleTimer = 1;
+                        idleTimer = 0.7f;
+                    }
+                    else if (countIdle == -10)
+                    {
+                        StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = false;
                     }
                     else
                     {

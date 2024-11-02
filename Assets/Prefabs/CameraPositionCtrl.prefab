@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraParent: {fileID: 4416186644211681181}
-  initPosition: {x: 0, y: 50, z: 0}
+  initPosition: {x: 0, y: 50, z: -5}
   cameraParentPosition:
   - {x: 0, y: 0, z: 0}
   - {x: 15, y: 0, z: 0}
