@@ -15,6 +15,9 @@ public class CameraCtrl : MonoBehaviour
 
     public bool isGame;
 
+    public int countIdle;
+    public float idleTimer;
+
     private void Awake()
     {
         instance = this;
@@ -30,12 +33,43 @@ public class CameraCtrl : MonoBehaviour
         if(isGame)
         {
             cameraParent.transform.position = Vector3.Lerp(cameraParent.transform.position, cameraParentPosition[StageManager.instance.Stage], Time.deltaTime);
-            animator.SetBool("isGame", true);
+            
+            if(StageManager.instance.showStageAim[StageManager.instance.Stage] == false)
+            {
+                if(idleTimer > 0)
+                {
+                    idleTimer -= 1 * Time.deltaTime;
+                }
+                else
+                {
+                    StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
+
+                    if (countIdle > 0)
+                    {
+                        animator.SetTrigger("Idle");
+                        countIdle--;
+                        idleTimer = 1;
+                    }
+                    else if (countIdle == 0)
+                    {
+                        animator.SetTrigger("Re");
+                        countIdle--;
+                        idleTimer = 1;
+                    }
+                    else
+                    {
+                        StageManager.instance.showStageAim[StageManager.instance.Stage] = true;
+                    }
+                }
+            }
+            else
+            {
+                StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = false;
+            }
         }
         else
         {
             cameraParent.transform.position = Vector3.Lerp(cameraParent.transform.position, initPosition, Time.deltaTime);
-            animator.SetBool("isGame", false);
         }
     }
 }
