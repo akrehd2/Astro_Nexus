@@ -186,56 +186,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.size
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isPlaying.Array.size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[6]
-      value: 
-      objectReference: {fileID: 8300000, guid: e4f0a75b924fb824c8851a533456cc27, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[7]
-      value: 
-      objectReference: {fileID: 8300000, guid: 0a21c9b5b3bec4746b793fda0f06911c, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[8]
-      value: 
-      objectReference: {fileID: 8300000, guid: 65ef9dba08597a847afb30252ff18375, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[9]
-      value: 
-      objectReference: {fileID: 8300000, guid: b9feab6bb29ea5f4788fac7d4c1e07cd, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[10]
-      value: 
-      objectReference: {fileID: 8300000, guid: 8078a3ae8e0f7314a998c36114793375, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[11]
-      value: 
-      objectReference: {fileID: 8300000, guid: ae9fc6c4f280cf844a2e6482722103ba, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[12]
-      value: 
-      objectReference: {fileID: 8300000, guid: 80d3f434ece822442baffd5fb2a0ddbb, type: 3}
-    - target: {fileID: 5782343539196300463, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: sources.Array.data[13]
-      value: 
-      objectReference: {fileID: 8300000, guid: 4f5ccc771c6438f4caa641dc618cd6e3, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -355,16 +305,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CameraPositionCtrl
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289185935462212694, guid: be1dc4d48e219a84eb880ff72bfb0f74,
-        type: 3}
-      propertyPath: countIdle
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5289185935462212694, guid: be1dc4d48e219a84eb880ff72bfb0f74,
-        type: 3}
-      propertyPath: idleTimer
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8642680150978955873, guid: be1dc4d48e219a84eb880ff72bfb0f74,
         type: 3}
