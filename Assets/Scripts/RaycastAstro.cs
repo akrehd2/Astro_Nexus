@@ -8,6 +8,7 @@ public class RaycastAstro : MonoBehaviour
     LineRenderer lineRenderer;
     float lineWidth = 0.01f;
 
+    public GameObject clickParticle;
     public GameObject clickGameobject;
 
     public List<GameObject> nexumGameobject;
@@ -26,6 +27,7 @@ public class RaycastAstro : MonoBehaviour
         RaycastHit hit;
 
         Vector3 nowMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, -Camera.main.transform.position.z));
+        clickParticle.transform.position = nowMousePosition;
 
         if (linePoints != null)
         {
@@ -38,6 +40,8 @@ public class RaycastAstro : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            clickParticle.SetActive(true);
+
             if (Physics.Raycast(ray, out hit))
             {
                 clickGameobject = hit.transform.gameObject;
@@ -48,7 +52,6 @@ public class RaycastAstro : MonoBehaviour
 
         if (clickGameobject != null)
         {
-
             if (Input.GetMouseButton(0))
             {
                 lineRenderer.enabled = true;
@@ -169,6 +172,11 @@ public class RaycastAstro : MonoBehaviour
 
                 lineRenderer.positionCount = 0;
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            clickParticle.SetActive(false);
         }
     }
 }
