@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class RaycastAstro : MonoBehaviour
 {
@@ -161,10 +163,24 @@ public class RaycastAstro : MonoBehaviour
 
                     StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
 
+                    StageManager.instance.isStageClear[StageManager.instance.Stage] = true;
                     StageManager.instance.Stage += 1;
                 }
                 else
                 {
+                    if (nexumGameobject.Count > 0)
+                    {
+                        Vignette vignette;
+                        PostCtrl.instance.postVolume.profile.TryGet<Vignette>(out vignette);
+                        vignette.intensity.value = 0.6f;
+
+                        StageManager.instance.showStageAim[StageManager.instance.Stage] = false;
+
+                        CameraCtrl.instance.animator.SetTrigger("Re");
+                        CameraCtrl.instance.idleTimer = 1;
+                        CameraCtrl.instance.countIdle = 4;
+                    }
+
                     clickGameobject = null;
                     nexumGameobject.Clear();
                     linePoints.Clear();

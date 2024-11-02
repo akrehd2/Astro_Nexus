@@ -24,6 +24,9 @@ public class StageManager : MonoBehaviour
 
     public List<StageAimNexumList> stageAimNexumList;
 
+    public List<bool> isStageClear;
+    public List<bool> showStageAim;
+
     private void Awake()
     {
         instance = this;
