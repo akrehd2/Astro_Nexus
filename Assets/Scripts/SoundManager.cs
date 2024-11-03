@@ -42,25 +42,30 @@ public class SoundManager : MonoBehaviour
         yield return new WaitForSeconds(5);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[1];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[1];
 
         CreateSound(1);
 
         yield return new WaitForSeconds(2.5f);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[2];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[2];
 
         CreateSound(2);
 
         yield return new WaitForSeconds(5);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[3];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[3];
 
         CreateSound(3);
 
         yield return new WaitForSeconds(5);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[6];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[6];
 
         CreateSound(14);
 
@@ -80,12 +85,14 @@ public class SoundManager : MonoBehaviour
         }
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[7];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[7];
 
         CreateSound(15);
 
         yield return new WaitForSeconds(3);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[8];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[8];
 
         CreateSound(16);
 
@@ -105,13 +112,16 @@ public class SoundManager : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[4];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[4];
 
         CreateSound(4);
 
         yield return new WaitForSeconds(4);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[0];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[0];
         DialogManager.instance.dialogText.gameObject.SetActive(false);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
         CreateSound(6);
         CameraCtrl.instance.animator.SetTrigger("Re");

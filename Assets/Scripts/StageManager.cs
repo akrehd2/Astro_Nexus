@@ -112,11 +112,14 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.CreateSound(5);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[5];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[5];
 
         yield return new WaitForSeconds(7);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -133,20 +136,24 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.CreateSound(17);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[9];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[9];
 
         yield return new WaitForSeconds(5);
 
         SoundManager.instance.CreateSound(20);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[12];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[12];
 
         Stage += 1;
 
         yield return new WaitForSeconds(4);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
-        
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
+
         yield return null;
     }
 
@@ -162,19 +169,23 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.CreateSound(18);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[10];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[10];
 
         yield return new WaitForSeconds(7);
 
         SoundManager.instance.CreateSound(19);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[11];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[11];
 
         Stage += 1;
 
         yield return new WaitForSeconds(5);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -191,25 +202,30 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.CreateSound(21);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[13];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[13];
 
         yield return new WaitForSeconds(5);
 
         SoundManager.instance.CreateSound(22);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[14];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[14];
 
         yield return new WaitForSeconds(3);
 
         SoundManager.instance.CreateSound(23);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[15];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[15];
 
         Stage += 1;
 
         yield return new WaitForSeconds(5);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
         yield return null;
     }
@@ -226,23 +242,35 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.CreateSound(24);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(true);
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[16];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[16];
 
         yield return new WaitForSeconds(5);
 
         SoundManager.instance.CreateSound(25);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[17];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[17];
 
         yield return new WaitForSeconds(5);
 
         SoundManager.instance.CreateSound(26);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[18];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[18];
 
         yield return new WaitForSeconds(6);
 
+        SoundManager.instance.CreateSound(27);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[19];
+        DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[19];
+
+        yield return new WaitForSeconds(3);
+
         DialogManager.instance.dialogText.gameObject.SetActive(false);
+        DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
         yield return null;
     }
