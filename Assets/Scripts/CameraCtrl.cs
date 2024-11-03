@@ -34,7 +34,7 @@ public class CameraCtrl : MonoBehaviour
         if(isGame)
         {
             cameraParent.transform.position = Vector3.Lerp(cameraParent.transform.position, cameraParentPosition[StageManager.instance.Stage], Time.deltaTime);
-            cameraParent.transform.localEulerAngles = Vector3.Lerp(cameraParent.transform.localEulerAngles, cameraParentRotation[StageManager.instance.Stage], Time.deltaTime);
+            cameraParent.transform.localEulerAngles = cameraParentRotation[StageManager.instance.Stage];
 
             if (StageManager.instance.showStageAim[StageManager.instance.Stage] == false)
             {

@@ -45,9 +45,22 @@ public class StageManager : MonoBehaviour
         }
 
         //스테이지 도달 시 부분 활성화
-        if (aimNexumPartList[Stage].activeSelf == false)
+        if (Stage != 9 && Stage != 21)
         {
-            aimNexumPartList[Stage].SetActive(true);
+            foreach (GameObject Part in aimNexumPartList)
+            {
+                if (Part != aimNexumPartList[Stage])
+                {
+                    if (Part.name != "AstroNexus")
+                    {
+                        Part.SetActive(false);
+                    }
+                }
+                else
+                {
+                    Part.SetActive(true);
+                }
+            }
         }
 
         // 특정 스테이지 클리어 했을 때
@@ -64,6 +77,14 @@ public class StageManager : MonoBehaviour
             if (SoundManager.instance.isPlaying[3] == false)
             {
                 StartCoroutine(stage8Clear());
+            }
+        }
+
+        if (isStageClear[20] && Stage == 21)
+        {
+            if (SoundManager.instance.isPlaying[4] == false)
+            {
+                StartCoroutine(stage20Clear());
             }
         }
     }
@@ -88,6 +109,11 @@ public class StageManager : MonoBehaviour
     {
         SoundManager.instance.isPlaying[3] = true;
 
+        for (int i = 0; i < 8; i++)
+        {
+            aimNexumPartList[i].SetActive(true);
+        }
+
         SoundManager.instance.CreateSound(17);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
@@ -95,8 +121,44 @@ public class StageManager : MonoBehaviour
 
         yield return new WaitForSeconds(5);
 
-        DialogManager.instance.dialogText.gameObject.SetActive(false);
+        SoundManager.instance.CreateSound(20);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[12];
+
         Stage += 1;
+
+        yield return new WaitForSeconds(4);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(false);
+        
+        yield return null;
+    }
+
+    public IEnumerator stage20Clear()
+    {
+        SoundManager.instance.isPlaying[4] = true;
+
+        for (int i = 10; i < 20; i++)
+        {
+            aimNexumPartList[i].SetActive(true);
+        }
+
+        SoundManager.instance.CreateSound(18);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[10];
+
+        yield return new WaitForSeconds(5);
+
+        SoundManager.instance.CreateSound(19);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[11];
+
+        Stage += 1;
+
+        yield return new WaitForSeconds(5);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(false);
 
         yield return null;
     }
