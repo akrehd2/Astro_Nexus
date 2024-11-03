@@ -38,14 +38,14 @@ public class StageManager : MonoBehaviour
         // 시작 별 파티클 조작
         if (isStageClear[Stage] == false)
         {
-            if (Stage != 9 && Stage != 21)
+            if (Stage != 9 && Stage != 21 && Stage != 28)
             {
                 stageAimNexumList[Stage].aimNexumGameobjectList.First().GetComponent<AstroCtrl>().isStartPoint = true;
             }
         }
 
         //스테이지 도달 시 부분 활성화
-        if (Stage != 9 && Stage != 21)
+        if (Stage != 9 && Stage != 21 && Stage != 28)
         {
             foreach (GameObject Part in aimNexumPartList)
             {
@@ -85,6 +85,14 @@ public class StageManager : MonoBehaviour
             if (SoundManager.instance.isPlaying[4] == false)
             {
                 StartCoroutine(stage20Clear());
+            }
+        }
+
+        if (isStageClear[27] && Stage == 28)
+        {
+            if (SoundManager.instance.isPlaying[5] == false)
+            {
+                StartCoroutine(stage27Clear());
             }
         }
     }
@@ -139,6 +147,35 @@ public class StageManager : MonoBehaviour
         SoundManager.instance.isPlaying[4] = true;
 
         for (int i = 10; i < 20; i++)
+        {
+            aimNexumPartList[i].SetActive(true);
+        }
+
+        SoundManager.instance.CreateSound(18);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[10];
+
+        yield return new WaitForSeconds(7);
+
+        SoundManager.instance.CreateSound(19);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[11];
+
+        Stage += 1;
+
+        yield return new WaitForSeconds(5);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(false);
+
+        yield return null;
+    }
+
+    public IEnumerator stage27Clear()
+    {
+        SoundManager.instance.isPlaying[5] = true;
+
+        for (int i = 22; i < 27; i++)
         {
             aimNexumPartList[i].SetActive(true);
         }
