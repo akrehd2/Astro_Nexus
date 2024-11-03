@@ -12,7 +12,7 @@ public class RaycastAstro : MonoBehaviour
     public bool isCanClick;
 
     LineRenderer lineRenderer;
-    float lineWidth = 0.01f;
+    float lineWidth = 0.1f;
 
     public GameObject clickParticle;
     public GameObject clickGameobject;
