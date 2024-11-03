@@ -6,6 +6,10 @@ public class AstroCtrl : MonoBehaviour
 {
     public GameObject[] particles;
 
+    public bool isStartPoint;
+
+    public GameObject startParticle;
+
     void Start()
     {
         float R = Random.Range(0.2f, 0.8f);
@@ -23,6 +27,18 @@ public class AstroCtrl : MonoBehaviour
             {
                 particle.SetActive(false);
             }
+        }
+    }
+
+    private void Update()
+    {
+        if (isStartPoint)
+        {
+            startParticle.SetActive(true);
+        }
+        else
+        {
+            startParticle.SetActive(false);
         }
     }
 }

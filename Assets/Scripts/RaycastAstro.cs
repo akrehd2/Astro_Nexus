@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -184,6 +185,7 @@ public class RaycastAstro : MonoBehaviour
 
                             SoundManager.instance.CreateSound(7);
 
+                            StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList.First().GetComponent<AstroCtrl>().isStartPoint = false;
                             StageManager.instance.isStageClear[StageManager.instance.Stage] = true;
                             StageManager.instance.Stage += 1;
                         }
@@ -198,6 +200,7 @@ public class RaycastAstro : MonoBehaviour
                                 StageManager.instance.showStageAim[StageManager.instance.Stage] = false;
 
                                 SoundManager.instance.CreateSound(9);
+                                SoundManager.instance.CreateSound(6);
 
                                 CameraCtrl.instance.animator.SetTrigger("Re");
                                 CameraCtrl.instance.idleTimer = 0.7f;

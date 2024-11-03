@@ -131,6 +131,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1514462564659683901, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763394489848094382, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1916243992379218286, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3325379376325491675, guid: d819f3f06a3f3a544a02d45fff3c3538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -185,6 +200,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4413820523413143092, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4724313524302508512, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5304926332447760175, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7415466465792799455, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7682507198407459089, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8348315519589613018, guid: d819f3f06a3f3a544a02d45fff3c3538,
+        type: 3}
+      propertyPath: isStartPoint
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

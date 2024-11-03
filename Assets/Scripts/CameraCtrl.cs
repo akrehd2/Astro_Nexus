@@ -10,6 +10,7 @@ public class CameraCtrl : MonoBehaviour
 
     public Vector3 initPosition;
     public List<Vector3> cameraParentPosition;
+    public List<Vector3> cameraParentRotation;
 
     public Animator animator;
 
@@ -33,8 +34,9 @@ public class CameraCtrl : MonoBehaviour
         if(isGame)
         {
             cameraParent.transform.position = Vector3.Lerp(cameraParent.transform.position, cameraParentPosition[StageManager.instance.Stage], Time.deltaTime);
-            
-            if(StageManager.instance.showStageAim[StageManager.instance.Stage] == false)
+            cameraParent.transform.localEulerAngles = Vector3.Lerp(cameraParent.transform.localEulerAngles, cameraParentRotation[StageManager.instance.Stage], Time.deltaTime);
+
+            if (StageManager.instance.showStageAim[StageManager.instance.Stage] == false)
             {
                 if(idleTimer > 0)
                 {

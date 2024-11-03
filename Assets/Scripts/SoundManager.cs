@@ -23,6 +23,15 @@ public class SoundManager : MonoBehaviour
         newSound.GetComponent<AudioSource>().Play();
     }
 
+    public GameObject CreateSoundReturnObj(int num)
+    {
+        GameObject newSound = Instantiate(soundPrefab, transform);
+        newSound.GetComponent<AudioSource>().clip = sources[num];
+        newSound.GetComponent<AudioSource>().Play();
+
+        return newSound;
+    }
+
     public IEnumerator TutorialSound()
     {
         isPlaying[0] = true;
