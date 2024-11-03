@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class SoundManager : MonoBehaviour
 {
@@ -58,6 +59,50 @@ public class SoundManager : MonoBehaviour
         CreateSound(3);
 
         yield return new WaitForSeconds(5);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[6];
+
+        CreateSound(14);
+
+        Vignette vignette;
+        PostCtrl.instance.postVolume.profile.TryGet<Vignette>(out vignette);
+        vignette.center.overrideState = true;
+        vignette.smoothness.overrideState = true;
+        vignette.rounded.overrideState = true;
+
+        while (vignette.intensity.value < 0.98f)
+        {
+            vignette.center.value = Vector2.Lerp(vignette.center.value, new Vector2(0.23f, 0.6f), Time.deltaTime);
+            vignette.smoothness.value = Mathf.Lerp(vignette.smoothness.value, 1, Time.deltaTime);
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 1, Time.deltaTime);
+
+            yield return null;
+        }
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[7];
+
+        CreateSound(15);
+
+        yield return new WaitForSeconds(3);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[8];
+
+        CreateSound(16);
+
+        while (vignette.intensity.value > 0.46f)
+        {
+            vignette.center.value = Vector2.Lerp(vignette.center.value, new Vector2(0.5f, 0.5f), Time.deltaTime);
+            vignette.smoothness.value = Mathf.Lerp(vignette.smoothness.value, 0.2f, Time.deltaTime);
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.45f, Time.deltaTime);
+
+            yield return null;
+        }
+
+        vignette.center.overrideState = false;
+        vignette.smoothness.overrideState = false;
+        vignette.rounded.overrideState = false;
+
+        yield return new WaitForSeconds(3);
 
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[4];
 

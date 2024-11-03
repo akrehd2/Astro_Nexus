@@ -44,9 +44,15 @@ public class CameraCtrl : MonoBehaviour
                 }
                 else
                 {
-                    StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
-
-                    if (countIdle > 0)
+                    if(countIdle == 4)
+                    {
+                        StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
+                        SoundManager.instance.CreateSound(10);
+                        animator.SetTrigger("Idle");
+                        countIdle--;
+                        idleTimer = 1;
+                    }
+                    else if (countIdle > 0)
                     {
                         SoundManager.instance.CreateSound(10);
                         animator.SetTrigger("Idle");
@@ -58,7 +64,7 @@ public class CameraCtrl : MonoBehaviour
                         SoundManager.instance.CreateSound(6);
                         animator.SetTrigger("Re");
                         countIdle--;
-                        idleTimer = 0.7f;
+                        idleTimer = 1;
                     }
                     else if (countIdle == -10)
                     {

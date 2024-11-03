@@ -131,21 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1514462564659683901, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1763394489848094382, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1916243992379218286, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3325379376325491675, guid: d819f3f06a3f3a544a02d45fff3c3538,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -200,36 +185,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4413820523413143092, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4724313524302508512, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5304926332447760175, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7415466465792799455, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7682507198407459089, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8348315519589613018, guid: d819f3f06a3f3a544a02d45fff3c3538,
-        type: 3}
-      propertyPath: isStartPoint
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -531,6 +486,12 @@ MonoBehaviour:
   - Try connecting the stars, like painting across the sky.
   - "Let me show you how\u2014it\u2019s simple, just follow along."
   - Ah, you did it so beautifully! Shall we keep going and light up the night together?
+  - I'll show you where to begin.
+  - So make sure to start from there.
+  - Because the order in which you connect the stars is very important.
+  - "Ah, welcome to Redbrick. Isn\u2019t it beautiful?"
+  - Look, a blossom has bloomed wide open over there.
+  - "You\u2019ve done beautifully. Such a natural talent you have."
 --- !u!1 &1680393159
 GameObject:
   m_ObjectHideFlags: 0

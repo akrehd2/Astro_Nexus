@@ -22,8 +22,11 @@ public class PostCtrl : MonoBehaviour
 
     private void Update()
     {
-        Vignette vignette;
-        postVolume.profile.TryGet<Vignette>(out vignette);
-        vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.45f, Time.deltaTime);
+        if (RaycastAstro.instance.isCanClick)
+        {
+            Vignette vignette;
+            postVolume.profile.TryGet<Vignette>(out vignette);
+            vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.45f, Time.deltaTime);
+        }
     }
 }

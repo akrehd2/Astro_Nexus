@@ -18,6 +18,8 @@ public class RaycastAstro : MonoBehaviour
     public GameObject clickParticle;
     public GameObject clickGameobject;
 
+    public GameObject clearParticle;
+
     public List<GameObject> nexumGameobject;
     public List<Vector3> linePoints;
 
@@ -181,6 +183,9 @@ public class RaycastAstro : MonoBehaviour
                             nexumGameobject.Clear();
                             linePoints.Clear();
 
+                            clearParticle.transform.position = CameraCtrl.instance.cameraParentPosition[StageManager.instance.Stage];
+                            clearParticle.SetActive(true);
+
                             StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
 
                             SoundManager.instance.CreateSound(7);
@@ -203,7 +208,7 @@ public class RaycastAstro : MonoBehaviour
                                 SoundManager.instance.CreateSound(6);
 
                                 CameraCtrl.instance.animator.SetTrigger("Re");
-                                CameraCtrl.instance.idleTimer = 0.7f;
+                                CameraCtrl.instance.idleTimer = 1;
                                 CameraCtrl.instance.countIdle = 4;
                             }
 
