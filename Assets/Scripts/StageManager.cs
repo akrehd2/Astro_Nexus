@@ -45,9 +45,26 @@ public class StageManager : MonoBehaviour
         }
 
         //스테이지 도달 시 부분 활성화
-        if (aimNexumPartList[Stage].activeSelf == false)
+        if(Stage >= 10 && Stage <= 20)  //꽃일 때
         {
-            aimNexumPartList[Stage].SetActive(true);
+            foreach(GameObject Part in aimNexumPartList)
+            {
+                if(Part != aimNexumPartList[Stage])
+                {
+                    Part.SetActive(false);
+                }
+                else
+                {
+                    Part.SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            if (aimNexumPartList[Stage].activeSelf == false)
+            {
+                aimNexumPartList[Stage].SetActive(true);
+            }
         }
 
         // 특정 스테이지 클리어 했을 때
