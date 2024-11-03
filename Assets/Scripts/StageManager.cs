@@ -95,6 +95,14 @@ public class StageManager : MonoBehaviour
                 StartCoroutine(stage27Clear());
             }
         }
+
+        if (isStageClear[33] && Stage == 34)
+        {
+            if (SoundManager.instance.isPlaying[6] == false)
+            {
+                StartCoroutine(Ending());
+            }
+        }
     }
 
     public IEnumerator stage0Clear()
@@ -180,20 +188,59 @@ public class StageManager : MonoBehaviour
             aimNexumPartList[i].SetActive(true);
         }
 
-        SoundManager.instance.CreateSound(18);
+        SoundManager.instance.CreateSound(21);
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
-        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[10];
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[13];
 
         yield return new WaitForSeconds(5);
 
-        SoundManager.instance.CreateSound(19);
+        SoundManager.instance.CreateSound(22);
 
-        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[11];
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[14];
+
+        yield return new WaitForSeconds(3);
+
+        SoundManager.instance.CreateSound(23);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[15];
 
         Stage += 1;
 
         yield return new WaitForSeconds(5);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(false);
+
+        yield return null;
+    }
+
+    public IEnumerator Ending()
+    {
+        SoundManager.instance.isPlaying[6] = true;
+
+        for (int i = 0; i < 34; i++)
+        {
+            aimNexumPartList[i].SetActive(true);
+        }
+
+        SoundManager.instance.CreateSound(24);
+
+        DialogManager.instance.dialogText.gameObject.SetActive(true);
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[16];
+
+        yield return new WaitForSeconds(5);
+
+        SoundManager.instance.CreateSound(25);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[17];
+
+        yield return new WaitForSeconds(5);
+
+        SoundManager.instance.CreateSound(26);
+
+        DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[18];
+
+        yield return new WaitForSeconds(6);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
 
