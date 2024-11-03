@@ -38,14 +38,14 @@ public class StageManager : MonoBehaviour
         // 시작 별 파티클 조작
         if (isStageClear[Stage] == false)
         {
-            if (Stage != 9 && Stage != 21 && Stage != 28)
+            if (Stage != 9 && Stage != 21 && Stage != 28 && Stage != 34)
             {
                 stageAimNexumList[Stage].aimNexumGameobjectList.First().GetComponent<AstroCtrl>().isStartPoint = true;
             }
         }
 
         //스테이지 도달 시 부분 활성화
-        if (Stage != 9 && Stage != 21 && Stage != 28)
+        if (Stage != 9 && Stage != 21 && Stage != 28 && Stage != 34)
         {
             foreach (GameObject Part in aimNexumPartList)
             {
