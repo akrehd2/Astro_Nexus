@@ -11,6 +11,7 @@ public class SoundManager : MonoBehaviour
 
     public List<AudioClip> sources;
     public List<bool> isPlaying;
+    public bool isCanSkip;
 
     private void Awake()
     {
@@ -33,6 +34,16 @@ public class SoundManager : MonoBehaviour
         return newSound;
     }
 
+    public void OnTutorial()
+    {
+        StartCoroutine("TutorialSound");
+    }
+
+    public void SkipTutorial()
+    {
+        StopCoroutine("TutorialSound");
+    }
+
     public IEnumerator TutorialSound()
     {
         isPlaying[0] = true;
@@ -40,6 +51,8 @@ public class SoundManager : MonoBehaviour
         CreateSound(0);
 
         yield return new WaitForSeconds(5);
+
+        isCanSkip = true;
 
         DialogManager.instance.dialogText.gameObject.SetActive(true);
         DialogManager.instance.dialogKorText.gameObject.SetActive(true);

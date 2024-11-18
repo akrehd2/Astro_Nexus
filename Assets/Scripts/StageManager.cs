@@ -28,6 +28,8 @@ public class StageManager : MonoBehaviour
     public List<bool> isStageClear;
     public List<bool> showStageAim;
 
+    public GameObject skipUI;
+
     private void Awake()
     {
         instance = this;

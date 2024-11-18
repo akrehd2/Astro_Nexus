@@ -65,7 +65,7 @@ public class GameStarter : MonoBehaviour
         {
             if (SoundManager.instance.isPlaying[0] == false)
             {
-                StartCoroutine(SoundManager.instance.TutorialSound());
+                SoundManager.instance.OnTutorial();
             }
 
             if (waitTimer > 0)

@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class RaycastAstro : MonoBehaviour
 {
     public static RaycastAstro instance;
 
     public bool isCanClick;
+    public float skipTimer;
 
     LineRenderer lineRenderer;
     float lineWidth = 0.1f;
@@ -219,6 +222,61 @@ public class RaycastAstro : MonoBehaviour
                         lineRenderer.positionCount = 0;
                     }
                 }
+            }
+        }
+        else if(SoundManager.instance.isCanSkip == true)
+        {
+            StageManager.instance.skipUI.GetComponent<Image>().color = new Color(1, 1, 1, skipTimer);
+            StageManager.instance.skipUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, skipTimer);
+            StageManager.instance.skipUI.GetComponent<Image>().fillAmount = skipTimer;
+
+            if (Input.GetMouseButton(0))
+            {
+                //½ºÅµ
+                skipTimer += 1 * Time.deltaTime;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                skipTimer = 0;
+            }
+
+            if (skipTimer >= 1)
+            {
+                StageManager.instance.skipUI.SetActive(false);
+
+                clearParticle.transform.position = CameraCtrl.instance.cameraParentPosition[StageManager.instance.Stage];
+                clearParticle.SetActive(true);
+
+                SoundManager.instance.SkipTutorial();
+
+                DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[0];
+                DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[0];
+                DialogManager.instance.dialogText.gameObject.SetActive(false);
+                DialogManager.instance.dialogKorText.gameObject.SetActive(false);
+
+                var tempSoundList = new List<GameObject>();
+
+                for (int i = 0; i < SoundManager.instance.transform.childCount; i++)
+                {
+                    tempSoundList.Add(SoundManager.instance.transform.GetChild(i).gameObject);
+                }
+
+                foreach (GameObject sound in tempSoundList)
+                {
+                    Destroy(sound);
+                }
+
+                SoundManager.instance.CreateSound(7);
+
+                CameraCtrl.instance.countIdle = 4;
+                CameraCtrl.instance.idleTimer = 2f;
+
+                PostCtrl.instance.init();
+
+                StageManager.instance.aimNexumPartList[0].GetComponent<LineRenderer>().enabled = true;
+                skipTimer = 0;
+                isCanClick = true;
             }
         }
 

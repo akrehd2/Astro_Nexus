@@ -29,4 +29,15 @@ public class PostCtrl : MonoBehaviour
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, 0.45f, Time.deltaTime);
         }
     }
+
+    public void init()
+    {
+        Vignette vignette;
+        postVolume.profile.TryGet<Vignette>(out vignette);
+        vignette.intensity.value = 0.45f;
+
+        vignette.center.overrideState = false;
+        vignette.smoothness.overrideState = false;
+        vignette.rounded.overrideState = false;
+    }
 }
