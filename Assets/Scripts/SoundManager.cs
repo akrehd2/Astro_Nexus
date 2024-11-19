@@ -136,14 +136,8 @@ public class SoundManager : MonoBehaviour
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
-        CreateSound(6);
-        CameraCtrl.instance.animator.SetTrigger("Re");
-        CameraCtrl.instance.countIdle = 4;
-        CameraCtrl.instance.idleTimer = 2f;
-
-        yield return new WaitForSeconds(0.7f);
-
-        StageManager.instance.aimNexumPartList[0].GetComponent<LineRenderer>().enabled = true;
+        StageManager.instance.skipUI.SetActive(false);
+        ShowHint.instance.StartShowHint();
 
         yield return RaycastAstro.instance.isCanClick = true;
     }

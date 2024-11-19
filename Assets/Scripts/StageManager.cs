@@ -109,6 +109,8 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator stage0Clear()
     {
+        RaycastAstro.instance.isCanClick = false;
+
         SoundManager.instance.isPlaying[2] = true;
 
         SoundManager.instance.CreateSound(5);
@@ -118,16 +120,22 @@ public class StageManager : MonoBehaviour
         DialogManager.instance.dialogText.text = DialogManager.instance.dialogStrings[5];
         DialogManager.instance.dialogKorText.text = DialogManager.instance.dialogKorStrings[5];
 
-        yield return new WaitForSeconds(7);
+        yield return new WaitForSeconds(5);
+
+        ShowHint.instance.StartShowHint();
+
+        yield return new WaitForSeconds(2);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
-        yield return null;
+        yield return RaycastAstro.instance.isCanClick = true;
     }
 
     public IEnumerator stage8Clear()
     {
+        RaycastAstro.instance.isCanClick = false;
+
         SoundManager.instance.isPlaying[3] = true;
 
         for (int i = 0; i < 8; i++)
@@ -151,16 +159,22 @@ public class StageManager : MonoBehaviour
 
         Stage += 1;
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(2);
+
+        ShowHint.instance.StartShowHint();
+
+        yield return new WaitForSeconds(2);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
-        yield return null;
+        yield return RaycastAstro.instance.isCanClick = true;
     }
 
     public IEnumerator stage20Clear()
     {
+        RaycastAstro.instance.isCanClick = false;
+
         SoundManager.instance.isPlaying[4] = true;
 
         for (int i = 10; i < 20; i++)
@@ -184,16 +198,22 @@ public class StageManager : MonoBehaviour
 
         Stage += 1;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
+
+        ShowHint.instance.StartShowHint();
+
+        yield return new WaitForSeconds(2);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
-        yield return null;
+        yield return RaycastAstro.instance.isCanClick = true;
     }
 
     public IEnumerator stage27Clear()
     {
+        RaycastAstro.instance.isCanClick = false;
+
         SoundManager.instance.isPlaying[5] = true;
 
         for (int i = 22; i < 27; i++)
@@ -224,12 +244,16 @@ public class StageManager : MonoBehaviour
 
         Stage += 1;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
+
+        ShowHint.instance.StartShowHint();
+
+        yield return new WaitForSeconds(2);
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
 
-        yield return null;
+        yield return RaycastAstro.instance.isCanClick = true;
     }
 
     public IEnumerator Ending()

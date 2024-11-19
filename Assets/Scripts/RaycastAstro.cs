@@ -81,8 +81,6 @@ public class RaycastAstro : MonoBehaviour
 
                         if (Physics.Raycast(ray, out hit))
                         {
-                            Debug.Log(hit.transform.name);
-
                             if (hit.transform.gameObject != clickGameobject)
                             {
                                 if (!nexumGameobject.Contains(clickGameobject))
@@ -138,13 +136,14 @@ public class RaycastAstro : MonoBehaviour
                             {
                                 if (nexumGameobject.Count == 0)
                                 {
-                                    Debug.Log("nohit");
+                                    Debug.Log("nohit1");
                                     //linePoints.Add(nowMousePosition);
                                 }
                                 else if (linePoints.Count == nexumGameobject.Count)
                                 {
-                                    Debug.Log("nohit");
+                                    Debug.Log("nohit2");
                                     linePoints.Add(nowMousePosition);
+                                    linePoints[nexumGameobject.Count - 1] = nexumGameobject[nexumGameobject.Count - 1].transform.position;
                                 }
                                 else
                                 {
@@ -190,6 +189,11 @@ public class RaycastAstro : MonoBehaviour
 
                             StageManager.instance.aimNexumPartList[StageManager.instance.Stage].GetComponent<LineRenderer>().enabled = true;
 
+                            if (StageManager.instance.Stage != 0)
+                            {
+                                ShowHint.instance.StartShowHint();
+                            }
+
                             SoundManager.instance.CreateSound(7);
 
                             StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList.First().GetComponent<AstroCtrl>().isStartPoint = false;
@@ -233,7 +237,7 @@ public class RaycastAstro : MonoBehaviour
             if (Input.GetMouseButton(0))
             {
                 //½ºÅµ
-                skipTimer += 1 * Time.deltaTime;
+                skipTimer += 0.33f * Time.deltaTime;
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -269,14 +273,12 @@ public class RaycastAstro : MonoBehaviour
 
                 SoundManager.instance.CreateSound(7);
 
-                CameraCtrl.instance.countIdle = 4;
-                CameraCtrl.instance.idleTimer = 2f;
-
                 PostCtrl.instance.init();
 
-                StageManager.instance.aimNexumPartList[0].GetComponent<LineRenderer>().enabled = true;
+                ShowHint.instance.StartShowHint();
                 skipTimer = 0;
                 isCanClick = true;
+                SoundManager.instance.isCanSkip = false;
             }
         }
 
