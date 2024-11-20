@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 public class ShowHint : MonoBehaviour
@@ -44,6 +45,8 @@ public class ShowHint : MonoBehaviour
 
         linePositions.Add(currentPoint);
 
+        StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList[linePositions.Count - 1].GetComponent<AstroCtrl>().OnCastingParticle();
+
         hintLineRenderer.positionCount = linePositions.Count;
 
         hintLineRenderer.SetPositions(linePositions.ToArray());
@@ -68,6 +71,8 @@ public class ShowHint : MonoBehaviour
         Vector3 lastPoint = linePositions[linePositions.Count - 1];
 
         linePositions.Add(currentPoint);
+
+        StageManager.instance.stageAimNexumList[StageManager.instance.Stage].aimNexumGameobjectList[linePositions.Count - 1].GetComponent<AstroCtrl>().OnCastingParticle();
 
         hintLineRenderer.positionCount = linePositions.Count;
 

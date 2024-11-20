@@ -33,6 +33,7 @@ public class GameStarter : MonoBehaviour
         for (int activeObj = 0; activeObj < TitleObj.Count; activeObj++)
         {
             TitleObj[activeObj].SetActive(true);
+            TitleObj[activeObj].GetComponent<AstroCtrl>().OnCastingParticle();
             linePositions.Add(TitleObj[activeObj].transform.position);
 
             // 라인 렌더러 포지션 업데이트

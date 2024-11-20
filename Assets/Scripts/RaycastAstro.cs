@@ -65,6 +65,7 @@ public class RaycastAstro : MonoBehaviour
                     if (Physics.Raycast(ray, out hit))
                     {
                         clickGameobject = hit.transform.gameObject;
+                        clickGameobject.GetComponent<AstroCtrl>().OnCastingParticle2();
 
                         int R = Random.Range(11, 14);
                         SoundManager.instance.CreateSound(R);
@@ -81,6 +82,8 @@ public class RaycastAstro : MonoBehaviour
 
                         if (Physics.Raycast(ray, out hit))
                         {
+                            hit.transform.GetComponent<AstroCtrl>().OnCastingParticle2();
+
                             if (hit.transform.gameObject != clickGameobject)
                             {
                                 if (!nexumGameobject.Contains(clickGameobject))

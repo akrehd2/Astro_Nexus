@@ -9,6 +9,8 @@ public class AstroCtrl : MonoBehaviour
     public bool isStartPoint;
 
     public GameObject startParticle;
+    public GameObject castingParticle;
+    public GameObject castingParticle2;
 
     void Start()
     {
@@ -40,5 +42,15 @@ public class AstroCtrl : MonoBehaviour
         {
             startParticle.SetActive(false);
         }
+    }
+
+    public void OnCastingParticle()
+    {
+        castingParticle.SetActive(true);
+    }
+
+    public void OnCastingParticle2()
+    {
+        castingParticle2.SetActive(true);
     }
 }
