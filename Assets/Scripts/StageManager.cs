@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class StageManager : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class StageManager : MonoBehaviour
     public List<bool> showStageAim;
 
     public GameObject skipUI;
+    public PlayableDirector playerbleDirector;
+    public TimelineAsset timelineAsset;
 
     private void Awake()
     {
@@ -297,6 +301,8 @@ public class StageManager : MonoBehaviour
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
+
+        playerbleDirector.Play(timelineAsset);
 
         yield return null;
     }
