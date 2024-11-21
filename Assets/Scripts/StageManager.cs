@@ -31,6 +31,7 @@ public class StageManager : MonoBehaviour
     public List<bool> showStageAim;
 
     public GameObject skipUI;
+    public GameObject reUI;
     public PlayableDirector playerbleDirector;
     public TimelineAsset timelineAsset;
 
@@ -301,6 +302,9 @@ public class StageManager : MonoBehaviour
 
         DialogManager.instance.dialogText.gameObject.SetActive(false);
         DialogManager.instance.dialogKorText.gameObject.SetActive(false);
+
+        RaycastAstro.instance.isCanClick = false;
+        RaycastAstro.instance.isCanRestart = true;
 
         playerbleDirector.Play(timelineAsset);
 

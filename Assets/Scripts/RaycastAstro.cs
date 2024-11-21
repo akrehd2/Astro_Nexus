@@ -6,13 +6,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class RaycastAstro : MonoBehaviour
 {
     public static RaycastAstro instance;
 
     public bool isCanClick;
+    public bool isCanRestart = false;
     public float skipTimer;
+    public float restartTimer;
 
     LineRenderer lineRenderer;
     float lineWidth = 0.1f;
@@ -282,6 +285,28 @@ public class RaycastAstro : MonoBehaviour
                 skipTimer = 0;
                 isCanClick = true;
                 SoundManager.instance.isCanSkip = false;
+            }
+        }
+        else if (isCanRestart == true)
+        {
+            StageManager.instance.reUI.GetComponent<Image>().color = new Color(1, 1, 1, restartTimer);
+            StageManager.instance.reUI.transform.GetChild(0).GetComponent<TextMeshProUGUI>().color = new Color(1, 1, 1, restartTimer);
+            StageManager.instance.reUI.GetComponent<Image>().fillAmount = restartTimer;
+
+            if (Input.GetMouseButton(0))
+            {
+                //Àç½ÃÀÛ
+                restartTimer += 0.33f * Time.deltaTime;
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                restartTimer = 0;
+            }
+
+            if (restartTimer >= 1)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
 

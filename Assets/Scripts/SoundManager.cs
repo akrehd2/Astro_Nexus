@@ -48,8 +48,6 @@ public class SoundManager : MonoBehaviour
     {
         isPlaying[0] = true;
 
-        CreateSound(0);
-
         yield return new WaitForSeconds(5);
 
         isCanSkip = true;
@@ -138,6 +136,8 @@ public class SoundManager : MonoBehaviour
 
         StageManager.instance.skipUI.SetActive(false);
         ShowHint.instance.StartShowHint();
+
+        SoundManager.instance.isCanSkip = false;
 
         yield return RaycastAstro.instance.isCanClick = true;
     }

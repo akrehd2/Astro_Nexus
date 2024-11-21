@@ -8,6 +8,7 @@ public class GameStarter : MonoBehaviour
     public List<GameObject> TitleObj; // 활성화할 타이틀 오브젝트 리스트
     public List<Vector3> linePositions; // 라인 렌더러의 포지션 리스트
     public GameObject Title; // 타이틀 오브젝트
+    public GameObject PressToStartObj; // 눌러서 시작 오브젝트
     private LineRenderer lineRenderer; // 라인 렌더러
 
     private void Start()
@@ -51,15 +52,25 @@ public class GameStarter : MonoBehaviour
         }
 
         // 모든 타이틀 오브젝트가 활성화된 후 사운드 시작
+        SoundManager.instance.CreateSound(0);
+
+        PressToStartObj.SetActive(true);
+
+        // 입력이 감지될 때까지 대기
+        while (!Input.GetMouseButtonDown(0))
+        {
+            yield return null; // 다음 프레임까지 대기
+        }
+
+        PressToStartObj.SetActive(false);
+
+        // 입력 감지 시 튜토리얼 시작
         if (SoundManager.instance.isPlaying[0] == false)
         {
             SoundManager.instance.OnTutorial();
         }
 
-        // 대기 시간 동안 대기
-        yield return new WaitForSeconds(waitTimer);
-
-        // 게임 시작
+        // 입력 감지 시 게임 시작
         CameraCtrl.instance.isGame = true;
     }
 
